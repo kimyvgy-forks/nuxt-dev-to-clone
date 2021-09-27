@@ -39,9 +39,23 @@ export default {
     '@nuxtjs/svg',
     '@nuxtjs/style-resources'
   ],
-  modules: ['nuxt-ackee'],
+  modules: ['@kimyvgy/nuxt-page-cache', 'nuxt-ackee'],
   ackee: {
     server: 'https://ackee.nuxtjs.com',
     domainId: '6336379b-8d3e-4069-9d2e-897be6a7ed4e'
+  },
+  cache: {
+    pages: ['/'],
+    cacheStatusHeader: 'x-cache-status',
+    version: process.env.VERSION,
+    store: {
+      type: 'memory',
+      max: 100,
+      ttl: 600
+    }
+  },
+  server: {
+    host: process.env.HOST || '0.0.0.0',
+    port: process.env.PORT || 3000
   }
 }

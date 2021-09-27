@@ -12,6 +12,7 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@kimyvgy/nuxt-page-cache": "^1.2.7",
     "nuxt": "^2.12.2",
     "nuxt-ackee": "^2.0.0",
     "vue-content-placeholders": "^0.2.1",
