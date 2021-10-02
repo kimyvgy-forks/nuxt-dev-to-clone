@@ -49,9 +49,22 @@ export default {
     cacheStatusHeader: 'x-cache-status',
     version: process.env.VERSION,
     store: {
-      type: 'memory',
-      max: 100,
-      ttl: 600
+      type: 'redis',
+      host: process.env.REDIS_HOST || 'localhost',
+      port: process.env.REDIS_PORT || 6379,
+      password: process.env.REDIS_PASSWORD,
+      db: process.env.REDIS_DB,
+      prefix: process.env.REDIS_PREFIX,
+      ttl: 600, // seconds
+      configure: [
+        // these values are configured
+        // on redis upon initialization
+        ['maxmemory', process.env.REDIS_MAXMEMORY || '50mb'],
+        [
+          'maxmemory-policy',
+          process.env.REDIS_MAXMEMORY_POLICY || 'allkeys-lru'
+        ]
+      ]
     }
   },
   server: {
